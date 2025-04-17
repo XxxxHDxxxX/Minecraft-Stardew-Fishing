@@ -17,6 +17,7 @@ class StardewFishingBot:
         self.root.geometry("800x600")
         self.root.resizable(True, True)
         
+        
         # 默认区域设置
         self.screen_width, self.screen_height = pyautogui.size()
         x = int(self.screen_width/2 - 150)
@@ -38,12 +39,12 @@ class StardewFishingBot:
         #self.game_region = (int(self.screen_width/2-150), int(self.screen_height/2-250), 300, 500)
         
         # 默认颜色设置
-        self.fish_color_lower = np.array([50, 80, 80])
-        self.fish_color_upper = np.array([100, 150, 150])
-        self.green_bar_color_lower = np.array([40, 160, 40])
-        self.green_bar_color_upper = np.array([100, 255, 100])
-        self.blue_area_color_lower = np.array([160, 100, 40])
-        self.blue_area_color_upper = np.array([240, 180, 100])
+        self.fish_color_lower = np.array([185, 185, 89])
+        self.fish_color_upper = np.array([225, 225, 129])
+        self.green_bar_color_lower = np.array([152, 168, 76])
+        self.green_bar_color_upper = np.array([192, 208, 116])
+        self.blue_area_color_lower = np.array([232, 105, 41])
+        self.blue_area_color_upper = np.array([16, 145, 81])
         
         # 控制参数
         self.position_threshold = 10
@@ -62,6 +63,7 @@ class StardewFishingBot:
         self.create_ui()
     
     def create_ui(self):
+        self.show_masks_var = tk.BooleanVar(value=False)
         # 创建标签页
         self.tab_control = ttk.Notebook(self.root)
         
