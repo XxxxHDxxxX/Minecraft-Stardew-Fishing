@@ -91,6 +91,7 @@ class StardewFishingBot:
     
     def setup_main_tab(self):
         # 左侧控制面板
+        
         control_frame = ttk.LabelFrame(self.tab_main, text="控制")
         control_frame.grid(row=0, column=0, padx=10, pady=10, sticky="nw")
         
