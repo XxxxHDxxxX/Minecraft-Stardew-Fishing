@@ -19,7 +19,23 @@ class StardewFishingBot:
         
         # 默认区域设置
         self.screen_width, self.screen_height = pyautogui.size()
-        self.game_region = (int(self.screen_width/2-150), int(self.screen_height/2-250), 300, 500)
+        x = int(self.screen_width/2 - 150)
+        y = int(self.screen_height/2 - 250)
+        w = 300
+        h = 500
+
+        # 确保x和y不为负
+        x = max(0, x)
+        y = max(0, y)
+
+        # 确保区域不超出屏幕边界
+        if x + w > self.screen_width:
+            w = self.screen_width - x
+        if y + h > self.screen_height:
+            h = self.screen_height - y
+
+        self.game_region = (x, y, w, h)
+        #self.game_region = (int(self.screen_width/2-150), int(self.screen_height/2-250), 300, 500)
         
         # 默认颜色设置
         self.fish_color_lower = np.array([50, 80, 80])
@@ -447,7 +463,14 @@ class StardewFishingBot:
     def capture_screen(self, region=None):
         """捕获指定区域的屏幕"""
         if region:
-            screenshot = ImageGrab.grab(bbox=region)
+            x, y, w, h = region
+            # 确保宽度和高度是正值
+            w = max(1, w)
+            h = max(1, h)
+            # 确保区域在屏幕范围内
+            x = max(0, min(x, self.screen_width - w))
+            y = max(0, min(y, self.screen_height - h))
+            screenshot = ImageGrab.grab(bbox=(x, y, x + w, y + h))
         else:
             screenshot = ImageGrab.grab()
         
