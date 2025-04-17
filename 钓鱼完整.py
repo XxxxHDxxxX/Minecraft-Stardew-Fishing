@@ -429,11 +429,11 @@ class StardewFishingBot:
                 # 更新预览
                 self.update_preview()
                 current_time = time.time()
-                    if self.auto_cast_var.get() and current_time - last_cast_time > self.cast_cooldown:
-                        self.log("尝试投掷鱼竿...")
-                        pyautogui.rightClick()
-                        last_cast_time = current_time
-                        time.sleep(1.5)  # 等待投掷动画
+                if self.auto_cast_var.get() and current_time - last_cast_time > self.cast_cooldown:
+                    self.log("尝试投掷鱼竿...")
+                    pyautogui.rightClick()
+                    last_cast_time = current_time
+                    time.sleep(1.5)  # 等待投掷动画
                 
                 # 更新预览
                 self.update_preview()
